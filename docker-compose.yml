@@ -1,0 +1,15 @@
+version: '3'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/opt/Doc2PDF
+    environment:
+      - TZ=Asia/Shanghai
+      - RAILS_ENV=development
+      - RAILS_SERVE_STATIC_FILES=true
+      - SECRET_KEY_BASE=033bc5ce639abc0654809c520c5a80f787ca709258b5ad042b0542c997457fb403b7a2f614f7747cfde3d23ffcca771ced528803692f4c25e50a6d989aabafb
+      - NACTA_OAUTH_CLIENT=ZXJRs5myVb9EnkWOXYUcckKkDYdKnIKtYhNvexHp
+      - NACTA_OAUTH_SECRET=xTOjSOEDqh1FQAgpqWrm9WLRWS6tggiCIuxIlsMogJU5an4dDFPzx3iNe50jxIVQCxRAioju9Nm1NUf00rc86qUSXfPK49xHNU7OBwQ8SzlnVOqK4zha4lTPhBC09l9X
+    ports:
+      - 3000:3000
