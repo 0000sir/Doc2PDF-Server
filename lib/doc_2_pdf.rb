@@ -11,7 +11,16 @@ module Doc2Pdf
     # 2. convert
     win_convert(file, dest)
     # 3. return pdf file
-    return dest
+    return dest.to_s
+  end
+
+  def get_file(md5)
+    file = dest_file(md5)
+    if File.exists(file)
+      return file.to_s
+    else
+      raise IOError
+    end
   end
 
   def save_uploaded(uploaded_file)
@@ -20,7 +29,7 @@ module Doc2Pdf
     File.open(filename, 'wb') do |file|
       file.write(tempfile.read)
     end
-    return filename
+    return filename, md5
   end
 
   def file_md5(file)
