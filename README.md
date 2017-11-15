@@ -34,3 +34,23 @@ rails s -b 0.0.0.0 -p 80
 ```
 
 That's it.
+
+## API
+The API is really simple.
+
+### POST
+* URL: http://example.org/files
+* Params:
+ - - file: The office file you want to convert
+
+This will commit your file to the server. And it will return a file stream of your pdf file.
+
+This shell command can do the test
+```
+curl -F "file=@2016.xls" http://192.168.1.5:3000/files -o test.pdf
+```
+
+### GET
+* URL http://example.org/files/{md5sum}
+* Params:
+ - - md5sum: md5 sum of your file.
