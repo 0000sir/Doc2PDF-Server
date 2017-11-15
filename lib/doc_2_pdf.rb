@@ -16,7 +16,7 @@ module Doc2Pdf
 
   def get_file(md5)
     file = dest_file(md5)
-    if File.exists(file)
+    if File.exists?(file)
       return file.to_s
     else
       raise IOError
@@ -27,7 +27,7 @@ module Doc2Pdf
     md5 = file_md5(uploaded_file.tempfile)
     filename = source_file(uploaded_file.original_filename, md5)
     File.open(filename, 'wb') do |file|
-      file.write(tempfile.read)
+      file.write(uploaded_file.tempfile.read)
     end
     return filename, md5
   end
