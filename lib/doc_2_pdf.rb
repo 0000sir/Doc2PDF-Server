@@ -49,9 +49,11 @@ module Doc2Pdf
   def win_convert(from, to)
     script = Rails.root.join('bin/doc2pdf.ps1')
 
-    cmd = "powershell -ExecutionPolicy bypass -F #{script} #{from} #{to}"
+    cmd = "powershell -ExecutionPolicy bypass -F #{script} #{from}"
 
-    shell(cmd)
+    p cmd
+
+    system(cmd)
   end
 
 end
