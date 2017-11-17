@@ -57,9 +57,9 @@ module Doc2Pdf
   private
   def win_convert(from)
     script = Rails.root.join('bin/doc2pdf.ps1')
-    require 'filemagic'
+    require 'mimemagic/overlay'
 
-    mime = FileMagic.new(FileMagic::MAGIC_MIME).file(from)
+    mime = MimeMagic.by_magic(File.open(from)).to_s
 
     cmd = "powershell -ExecutionPolicy bypass -F #{script} #{from} #{mime}"
 
