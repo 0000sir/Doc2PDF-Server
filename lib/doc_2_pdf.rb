@@ -9,7 +9,7 @@ module Doc2Pdf
     dest = dest_file(md5)
     return dest if File.exists?(dest)
     # 2. convert
-    win_convert(file, dest)
+    win_convert(file)
     # 3. return pdf file
     return dest.to_s
   end
@@ -55,10 +55,13 @@ module Doc2Pdf
   extend self
 
   private
-  def win_convert(from, to)
+  def win_convert(from)
     script = Rails.root.join('bin/doc2pdf.ps1')
+    require 'filemagic'
 
-    cmd = "powershell -ExecutionPolicy bypass -F #{script} #{from}"
+    mime = FileMagic.new(FileMagic::MAGIC_MIME).file(from)
+
+    cmd = "powershell -ExecutionPolicy bypass -F #{script} #{from} #{mime}"
 
     p cmd
 
