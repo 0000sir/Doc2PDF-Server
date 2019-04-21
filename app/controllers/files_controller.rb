@@ -3,8 +3,8 @@ class FilesController < ApplicationController
 
   def create
     # create pdf with md5sum and uploaded file
-    file, md5 = Doc2Pdf.save_uploaded(params[:file])
-    dest = Doc2Pdf.convert(file, md5)
+    file, md5 = Doc2Pdf.save_uploaded(params[:file], params[:mime])
+    dest = Doc2Pdf.convert(file, md5, params[:mime])
     send_file(dest)
   end
 
