@@ -46,9 +46,11 @@ The API is really simple.
 This will commit your file to the server. And it will return a file stream of your pdf file.
 
 This shell command can do the test
+
 ```
-curl -F "file=@2016.xls" http://192.168.1.5:3000/files -o test.pdf
+curl -F "file=@2016.xls" -d "mime=application/ms-excel" http://192.168.1.5:3000/files -o test.pdf
 ```
+*NOTICE* submit file mime type to avoid miss conversion (Optional)
 
 ### GET
 * URL http://example.org/files/{md5sum}
